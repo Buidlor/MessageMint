@@ -9,17 +9,22 @@ async function main() {
   const [deployer] = await hre.ethers.getSigners();
   console.log("Deploying contracts with account: ", deployer.address);
 
-  const Greeter = await hre.ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("Hello, Hardhat!");
+  // const Greeter = await hre.ethers.getContractFactory("Greeter");
+  // const greeter = await Greeter.deploy("Hello, Hardhat!");
 
-  const Mytoken = await hre.ethers.getContractFactory("Mytoken");
-  const mytoken = await Mytoken.deploy();
+  //const Mytoken = await hre.ethers.getContractFactory("Mytoken");
+  //const mytoken = await Mytoken.deploy();
 
-  await greeter.deployed();
-  await mytoken.deployed();
+  const FFtoken = await hre.ethers.getContractFactory("FFtoken");
+  const fftoken = await FFtoken.deploy("WednesdayToken", "WDNT");
 
-  console.log("Greeter deployed to:", greeter.address);
-  console.log("Token deployed to:", mytoken.address);
+  //await greeter.deployed();
+  //await mytoken.deployed();
+  await fftoken.deployed();
+
+  //console.log("Greeter deployed to:", greeter.address);
+  //console.log("Token deployed to:", mytoken.address);
+  console.log("FFtoken deployed to:", fftoken.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
